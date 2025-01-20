@@ -108,7 +108,9 @@ if (!$result) {
                                 <a href="utamapenjual.php?page=editproduct&id_produk=<?php echo $row['id_produk']; ?>" class="btn btn-sm btn-brand">
                                     <i class="material-icons md-edit"></i> Edit
                                 </a>
-                                <a href="deleteproduct.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn btn-sm btn-light" onclick="return confirm('Anda yakin ingin menghapus produk ini?');">
+                                <a href="deleteproduct.php?id_produk=<?php echo $row['id_produk']; ?>" 
+                                   class="btn btn-sm btn-light" 
+                                   onclick="return confirm('Anda yakin ingin menghapus produk ini?');">
                                     <i class="material-icons md-delete_forever"></i> Hapus
                                 </a>
                             </div>

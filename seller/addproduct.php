@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
     $warna = mysqli_real_escape_string($koneksi, $_POST['warna']);
     $harga = mysqli_real_escape_string($koneksi, $_POST['harga']);
     $ketersediaan_stok = mysqli_real_escape_string($koneksi, $_POST['ketersediaan_stok']);
+    $berat = mysqli_real_escape_string($koneksi, $_POST['berat']);
     
     // Proses upload gambar
     $gambar = $_FILES['gambar']['name'];
@@ -47,9 +48,29 @@ if (isset($_POST['submit'])) {
         echo '<div style="color:red">Format gambar tidak valid. Hanya file JPG, JPEG, PNG, GIF yang diperbolehkan.</div>';
     } else {
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file)) {
-            // Menambahkan data ke dalam tabel produk
-            $query = "INSERT INTO produk (id_kategori, id_penjual, nama_produk, deskripsi, ukuran, warna, harga, ketersediaan_stok, gambar) 
-                      VALUES ('$id_kategori', '$id_penjual', '$nama_produk', '$deskripsi', '$ukuran', '$warna', '$harga', '$ketersediaan_stok', '$gambar')";
+            $query = "INSERT INTO produk (
+                id_kategori, 
+                nama_produk, 
+                deskripsi, 
+                harga, 
+                ketersediaan_stok, 
+                warna, 
+                ukuran, 
+                gambar, 
+                id_penjual,
+                berat
+            ) VALUES (
+                '$id_kategori', 
+                '$nama_produk', 
+                '$deskripsi', 
+                '$harga', 
+                '$ketersediaan_stok', 
+                '$warna', 
+                '$ukuran', 
+                '$gambar', 
+                '$id_penjual',
+                '$berat'
+            )";
             $result = mysqli_query($koneksi, $query);
 
             if ($result) {
@@ -106,6 +127,14 @@ if (isset($_POST['submit'])) {
                         <div class="mb-4">
                             <label class="form-label">Ukuran</label>
                             <textarea name="ukuran" placeholder="Enter product size" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="berat" class="form-label">Berat (gram)</label>
+                            <input type="number" 
+                                   name="berat" 
+                                   placeholder="Masukkan berat produk dalam gram" 
+                                   class="form-control" 
+                                   required />
                         </div>
                         <div class="mb-4">
                             <label class="form-label">Warna</label>

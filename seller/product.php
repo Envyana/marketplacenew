@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_penjual'])) {
 $id_penjual = $_SESSION['id_penjual']; // Ambil ID penjual dari sesi
 
 // Query untuk mengambil data produk milik penjual yang sedang login
-$query = "SELECT id_produk, id_kategori, nama_produk, deskripsi, harga, ketersediaan_stok, warna, ukuran, gambar 
+$query = "SELECT id_produk, id_kategori, nama_produk, deskripsi, harga, ketersediaan_stok, warna, ukuran, gambar, berat 
           FROM produk 
           WHERE id_penjual = '$id_penjual'";
 $result = mysqli_query($koneksi, $query);
@@ -42,6 +42,7 @@ if (!$result) {
                         <div class="col-lg-1 col-sm-1 col-2"><strong>Warna</strong></div>
                         <div class="col-lg-1 col-sm-1 col-2"><strong>Ukuran</strong></div>
                         <div class="col-lg-2 col-sm-2 col-4"><strong>Kategori</strong></div>
+                        <div class="col-lg-1 col-sm-1 col-2"><strong>Berat</strong></div>
                     </div>
                 </div>
                 <!-- List Produk -->
@@ -95,6 +96,10 @@ if (!$result) {
                                     echo "No category";
                                 }
                                 ?>
+                            </div>
+                            <!-- Berat -->
+                            <div class="col-lg-1 col-sm-1 col-2">
+                                <span>Berat: <?php echo $row['berat']; ?> gram</span>
                             </div>
                         </div>
                         <!-- Aksi -->
